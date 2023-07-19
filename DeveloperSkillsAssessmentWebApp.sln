@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeveloperSkillsAssessment.API", "..\DeveloperSkillsAssessment.API\DeveloperSkillsAssessment.API.csproj", "{AEDD974A-8A43-4CF8-B4FF-498C6C5803FE}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "DeveloperSkillsAssessment.App", "..\DeveloperSkillsAssessment.App\", "{32ABA61E-4088-493B-8DF3-919977E94228}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_60027"
+		Debug.AspNetCompiler.PhysicalPath = "..\DeveloperSkillsAssessment.App\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60027\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_60027"
+		Release.AspNetCompiler.PhysicalPath = "..\DeveloperSkillsAssessment.App\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60027\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "60027"
+		SlnRelativePath = "..\DeveloperSkillsAssessment.App\"
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{5ABB2753-9D4E-4D3B-B450-D0BEE2444C49}"
+	ProjectSection(SolutionItems) = preProject
+		D:\PersonsDB.bak = D:\PersonsDB.bak
+		..\..\..\..\Downloads\SabeloScript.sql = ..\..\..\..\Downloads\SabeloScript.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C32F538A-4634-4D2D-AEFA-E39BA81146F8}"
+	ProjectSection(SolutionItems) = preProject
+		README.txt = README.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AEDD974A-8A43-4CF8-B4FF-498C6C5803FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEDD974A-8A43-4CF8-B4FF-498C6C5803FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEDD974A-8A43-4CF8-B4FF-498C6C5803FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEDD974A-8A43-4CF8-B4FF-498C6C5803FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32ABA61E-4088-493B-8DF3-919977E94228}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32ABA61E-4088-493B-8DF3-919977E94228}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32ABA61E-4088-493B-8DF3-919977E94228}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{32ABA61E-4088-493B-8DF3-919977E94228}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AE721B2B-55A1-4190-92E9-E288988FAD76}
+	EndGlobalSection
+EndGlobal

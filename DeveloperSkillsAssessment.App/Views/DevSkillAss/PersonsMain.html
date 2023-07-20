@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <title>PERSON LIST</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="\css\style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="\js\app\SharedDataService.js"></script>
+    <script src="\js\app\UserController.js"></script>
+</head>
+<body ng-controller="UsrCtrl">
+    <!-- Navbar -->
+    <div class="topnav2" id="navbar">
+        <div class="logo-image">
+            <a href="/Views/index.html">
+                <img src="\images\personsicon.png" class="img-fluid">
+            </a>
+        </div>
+        <a href="/Views/DevSkillAss/Contact.html">Contact</a>
+        <a href="/Views/DevSkillAss/About.html">About</a>
+    </div>
+    <div>
+        <br><hr>
+        <h3>PERSON LIST</h3>
+        <hr><br>
+    </div>
+    <div>
+        <h4 class="addButHead">Click below to add a person</h4>
+        <div class="managebutton-container">
+
+            <button ng-click="showInsertModal()" class="rbut1">Add Person</button>
+        </div>
+    </div>
+    <hr />
+    <div class="search-container">
+        <input type="text" placeholder="Search by any person attributes..." ng-model="searchText" /><br /><br />
+    </div>
+    <!-- Table -->
+    <div class="container">
+        <table class="table" id="data_table">
+            <thead class="table-dark">
+                <tr>
+                    <th>NAME</th>
+                    <th>SURNAME</th>
+                    <th>ID NUMBER</th>
+                    <th>PERSON ACCOUNT DETAILS</th>
+                    <th>ADD NEW ACCOUNT DETAILS</th>
+                    <th>EDIT PERSON DETAILS</th>
+                    <th>DELETE PERSON DETAILS</th>
+                </tr>
+            </thead>
+            <tbody id="table_body">
+                <tr ng-repeat="p in persons | filter:searchText | limitTo: pageSize : (currentPage - 1) * pageSize">
+                    <td>{{p.name}}</td>
+                    <td>{{p.surname}}</td>
+                    <td>{{p.id_number}}</td>
+                    <td class="details-icon-cell" ng-click="openAccounts(p.code)">
+                        <img src="/images/accounts.svg" alt="Accounts icon" width="24" height="24" />
+                    </td>
+                    <td class="details-icon-cell" ng-click="showInsertModal2(p.code)">
+                        <img src="/images/addAc.svg" alt="Add icon" width="24" height="24" />
+                    </td>
+                    <td class="details-icon-cell" ng-click="showEditModal(p)">
+                        <img src="/images/editicon.svg" alt="Edit icon" width="24" height="24" />
+                    </td>
+                    <td class="details-icon-cell" ng-click="DeleteUsr(p.id_number)">
+                        <img src="/images/deleteicon.svg" alt="Delete icon" width="24" height="24" />
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+
+        <!-- Edit Modal -->
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <span class="close" ng-click="hideEditModal()">&times;</span>
+                <h2>Edit Person Details</h2>
+                <label for="editName">Name:</label>
+                <input type="text" id="editName" ng-model="editPerson.name" ng-change="convertToUppercase(editPerson, 'name')"><br /><br />
+                <label for="editSurname">Surname:</label>
+                <input type="text" id="editSurname" ng-model="editPerson.surname" ng-change="convertToUppercase(editPerson, 'surname')"><br /><br />
+                <p>ID Number: {{editPerson.id_number}}</p><br />
+                <button ng-click="EditUsr(editPerson.id_number, editPerson.name, editPerson.surname)" style="background-color:greenyellow;">Submit</button>
+                <button ng-click="hideEditModal()" style="background-color:red;">Cancel</button>
+            </div>
+        </div>
+
+        <!-- Insert Modal -->
+        <div id="insertModal" class="modal">
+            <div class="modal-content">
+                <span class="close" ng-click="hideInsertModal()">&times;</span>
+                <h2>Create Person Details</h2>
+                <label for="editName">Name:</label>
+                <input type="text" id="editName" ng-model="editPerson.name" ng-change="convertToUppercase(editPerson, 'name')"><br /><br />
+                <label for="editSurname">Surname:</label>
+                <input type="text" id="editSurname" ng-model="editPerson.surname" ng-change="convertToUppercase(editPerson, 'surname')"><br /><br />
+                <label for="editId">ID Number:</label>
+                <input type="text" id="editId" ng-model="editPerson.id_number" ng-change="convertToUppercase(editPerson, 'id_number')"><br /><br />
+                <button ng-click="CreateUsr(editPerson.id_number, editPerson.name, editPerson.surname)" style="background-color:green;">Submit</button>
+                <button ng-click="hideInsertModal()" style="background-color:red;">Cancel</button>
+            </div>
+        </div>
+
+        <!-- Insert Modal -->
+        <div id="insertModal2" class="modal">
+            <div class="modal-content">
+                <span class="close" ng-click="hideInsertModal2()">&times;</span>
+                <h2>Create Account Details</h2>
+                <label for="editName">Account Number:</label>
+                <input type="text" id="editName" ng-model="num"><br /><br />
+                <label for="editSurname">Outstanding Balance:</label>
+                <input type="text" id="editSurname" ng-model="otStand"><br /><br />
+                <label for="editId">Account Status:</label>
+                <select id="editId" ng-model="stat">
+                    <option ng-repeat="status in AccStat" value="{{status.status_name}}">{{status.status_name}}</option>
+                </select><br /><br />
+                <button ng-click="CreateAcc(num,otStand,stat)" style="background-color:green;">Submit</button>
+                <button ng-click="hideInsertModal2()" style="background-color:red;">Cancel</button>
+            </div>
+        </div>
+        <!-- Pagination -->
+        <div class="pagination">
+            <button ng-disabled="currentPage === 1" ng-click="currentPage = currentPage - 1">Previous</button>
+            <button ng-repeat="page in getPages()" ng-class="{active: page === currentPage}" ng-click="currentPage = page">{{ page }}</button>
+            <button ng-disabled="currentPage === getTotalPages()" ng-click="currentPage = currentPage + 1">Next</button>
+        </div>
+    </div>
+
+    <br><hr><br><br><br><br>
+    <!-- Footer -->
+    <div class="footer">
+        <div class="logo-image">
+            <img src="\images\personsicon.png" class="img-fluid">
+        </div>
+        <p class="copyrights"> © 2023, Persons. All  Rights Reserved.</p>
+    </div>
+</body>
+</html>

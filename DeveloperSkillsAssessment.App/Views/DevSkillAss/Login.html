@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <title>LOGIN</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="\css\style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="\js\app\SharedDataService.js"></script>
+    <script src="\js\app\Login.js"></script>
+</head>
+<body ng-controller="LoginCtrl">
+    <!-- Navbar -->
+    <div class="topnav" id="navbar">
+        <div class="logo-image">
+            <a href="/Views/index.html">
+                <img src="\images\personsicon.png" class="img-fluid">
+            </a>
+        </div>
+        <a href="/Views/DevSkillAss/Login.html">Login</a>
+        <a href="/Views/DevSkillAss/Contact.html">Contact</a>
+        <a href="/Views/DevSkillAss/About.html">About</a>
+    </div>
+    <div>
+        <br><hr>
+        <h3>LOGIN</h3>
+        <hr><br>
+    </div>
+    <div class="container2">
+        <form id="myForm">
+            <div class="">
+                <label for="username">Username:</label>
+                <input type="text" class="" id="username" ng-model="username" required>
+            </div>
+            <div class="">
+                <label for="password">Password:</label>
+                <input type="password" class="" id="password" ng-model="password" required>
+            </div>
+            <button type="submit" class="" ng-click="login()">Login</button><br />
+        </form>
+    </div>
+    <div id="errorPopup" ng-show="showMessage && responseError" class="error-popup">
+        <div class="error-popup-content">
+            <span class="close">&times;</span>
+            <p>Incorrect username or password.</p>
+        </div>
+    </div>
+    <br><hr><br><br><br><br>
+    <!-- Footer -->
+    <div class="footer">
+        <div class="logo-image">
+            <img src="\images\personsicon.png" class="img-fluid">
+        </div>
+        <p class="copyrights"> © 2023, Persons. All  Rights Reserved.</p>
+    </div>
+</body>
+</html>

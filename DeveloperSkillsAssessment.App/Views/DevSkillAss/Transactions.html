@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <title>TRANSACTION LIST</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="\css\style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.6/ui-bootstrap-tpls.min.js"></script>
+    <script src="\js\app\SharedDataService.js"></script>
+    <script src="\js\app\UserController.js"></script>
+</head>
+<body ng-controller="UsrCtrl">
+    <!-- Navbar -->
+    <div class="topnav2" id="navbar">
+        <div class="logo-image">
+            <a href="/Views/index.html">
+                <img src="\images\personsicon.png" class="img-fluid">
+            </a>
+        </div>
+        <a href="/Views/DevSkillAss/Contact.html">Contact</a>
+        <a href="/Views/DevSkillAss/About.html">About</a>
+    </div>
+    <div>
+        <br><hr>
+        <h3>TRANSACTIONS LIST</h3>
+        <hr><br>
+    </div>
+    <div>
+        <h4 class="addButHead">Click below to add a transaction</h4>
+        <div class="managebutton-container">
+
+            <button ng-click="showInsertModal()" class="rbut1">Add Transaction</button>
+        </div>
+    </div>
+    <hr />
+    <div class="search-container">
+        <input type="text" placeholder="Search by any transaction attributes..." ng-model="searchText" /><br /><br />
+    </div>
+    <!-- Table -->
+    <div class="container">
+        <table class="table" id="data_table">
+            <thead class="table-dark">
+                <tr>
+                    <th>TRANSACTION DATE</th>
+                    <th>CAPTURE DATE</th>
+                    <th>AMOUNT</th>
+                    <th>DESCRIPTION</th>
+                    <th>EDIT TRANSACTION DETAILS</th>
+                </tr>
+            </thead>
+            <tbody id="table_body">
+                <tr ng-repeat="t in trans | filter:searchText | limitTo: pageSize : (currentPage - 1) * pageSize">
+                    <td>{{t.transaction_date | date:'yyyy-MM-dd'}}</td>
+                    <td>{{t.capture_date | date:'yyyy-MM-dd'}}</td>
+                    <td>{{t.amount}}</td>
+                    <td>{{t.description}}</td>
+                    <td class="details-icon-cell" ng-click="showEditModal3(t)">
+                        <img src="/images/editicon.svg" alt="Accounts icon" width="24" height="24" />
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+
+        <!-- Edit Modal -->
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <span class="close" ng-click="hideEditModal()">&times;</span>
+                <h2>Edit Transaction Details</h2>
+                <label for="editName">Amount:</label>
+                <input type="text" id="editName" ng-model="editTran.amount"><br /><br />
+                <label for="editSurname">Description:</label>
+                <input type="text" id="editSurname" ng-model="editTran.description"><br /><br />
+                <button ng-click="EditTrans(editTran.code, editTran.amount, editTran.description)" style="background-color:green;">Submit</button>
+                <button ng-click="hideEditModal()" style="background-color:red;">Cancel</button>
+            </div>
+        </div>
+
+        <!-- Insert Modal -->
+        <div id="insertModal" class="modal">
+            <div class="modal-content">
+                <span class="close" ng-click="hideInsertModal()">&times;</span>
+                <h2>Create Transaction Details</h2>
+                <label for="editName">Transaction Date:</label>
+                <input type="date" id="editName" ng-model="Tdate"/><br /><br />
+                <label for="editSurname">Amount:</label>
+                <input type="text" id="editSurname" ng-model="Tamount" numeric-only><br /><br />
+                <label for="editId">Description:</label>
+                <textarea id="editId" ng-model="Tdes"></textarea><br /><br />
+                <button ng-click="CreateTrans(Tdate, Tamount, Tdes)" style="background-color:green;">Submit</button>
+                <button ng-click="hideInsertModal()" style="background-color:red;">Cancel</button>
+            </div>
+        </div>
+        <!-- Pagination -->
+        <div class="pagination">
+            <button ng-disabled="currentPage === 1" ng-click="currentPage = currentPage - 1">Previous</button>
+            <button ng-repeat="page in getPages()" ng-class="{active: page === currentPage}" ng-click="currentPage = page">{{ page }}</button>
+            <button ng-disabled="currentPage === getTotalPages()" ng-click="currentPage = currentPage + 1">Next</button>
+        </div>
+    </div>
+
+    <br><hr><br><br><br><br>
+    <!-- Footer -->
+    <div class="footer">
+        <div class="logo-image">
+            <img src="\images\personsicon.png" class="img-fluid">
+        </div>
+        <p class="copyrights"> © 2023, Persons. All  Rights Reserved.</p>
+    </div>
+</body>
+</html>
